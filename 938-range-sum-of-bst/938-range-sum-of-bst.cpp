@@ -1,8 +1,8 @@
 /*
     SILA ER
     ID: 20201701041
-    Time Complexity: O()
-    Space Complexity: O()
+    Time Complexity: O(h)
+    Space Complexity: O(n)
 */
 
 /**
@@ -50,4 +50,6 @@ public:
     If the second condition is true, go to root->right because our current node is not in the range. Proceed to bigger numbers.
     If the third condition is true, go to root->left because our current node is not in the range. Proceed to smaller numbers.
     If none of these are true, our value of the node is in the range. Add root->val to the sum. Continue with BST.
+    TC is O(h) because we traverse the height of the tree in the worst case.
+    OC is O(n) because we use recursion.
 */
