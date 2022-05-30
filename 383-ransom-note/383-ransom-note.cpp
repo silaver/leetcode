@@ -1,14 +1,16 @@
 class Solution {
 public:
-    bool canConstruct(string ransomNote, string magazine) {
+    bool canConstruct(string a, string b) {
+        map<char, int> mp;
         
-        int count[26] = {0};
-        for(char ch : magazine)
-            count[ch - 'a']++;
+        for(int i=0; i<b.length(); i++) {
+            mp[b[i]]++;
+        }
         
-        for(char ch : ransomNote)
-            if(count[ch - 'a']-- <= 0)
-                return false;
+        for(int i=0; i<a.length(); i++) {
+            if(mp[a[i]]>0) mp[a[i]]--;
+            else return false;
+        }
         
         return true;
     }
