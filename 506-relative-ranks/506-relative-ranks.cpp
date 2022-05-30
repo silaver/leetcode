@@ -1,41 +1,28 @@
-/*
-    SILA ER
-    ID: 20201701041
-    TC: O()
-    SC: O()
-*/
 class Solution {
 public:
     vector<string> findRelativeRanks(vector<int>& score) {
-        priority_queue<pair<int,int>> pq;
-        
-        vector<string> ans(score.size());
-        
-        for(int i=0; i<score.size(); i++) 
-            pq.push({score[i],i});
-        
+        priority_queue<pair<int,int>> maxHeap;
         for(int i=0; i<score.size(); i++)
-        {
-            auto it = pq.top();
-            
-            pq.pop();
-            
-            if(i==0){
-                ans[it.second]="Gold Medal";
-            }
-            else if(i==1)
-            {
-                 ans[it.second]="Silver Medal";
-            }
-            else if(i==2)
-            {
-                 ans[it.second]="Bronze Medal";
-            }
-            else{
-                ans[it.second]=to_string(i+1);
-            }
-        }
+            maxHeap.push(pair<int,int>(score[i],i));
         
+        vector<string> ans;
+        for(int i=0; i<score.size(); i++)
+            ans.push_back("");
+        
+        int i=0;
+        while(!maxHeap.empty())
+        {
+            if (i==0)
+                ans[(maxHeap.top()).second] = "Gold Medal";    
+            else if(i==1)
+                ans[(maxHeap.top()).second] = "Silver Medal"; 
+            else if(i==2)
+                ans[(maxHeap.top()).second] = "Bronze Medal"; 
+            else
+                ans[(maxHeap.top()).second] = to_string(i+1); 
+            maxHeap.pop();
+            i++;
+        }
         return ans;
     }
 };
